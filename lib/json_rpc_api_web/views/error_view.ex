@@ -1,6 +1,8 @@
 defmodule JsonRpcApiWeb.ErrorView do
   use JsonRpcApiWeb, :view
 
+  alias JsonRpcApiWeb.JsonRpcView
+
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
   # def render("500.json", _assigns) do
@@ -12,5 +14,13 @@ defmodule JsonRpcApiWeb.ErrorView do
   # "Not Found".
   def template_not_found(template, _assigns) do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
+  end
+
+  def render("500.json", _assigns) do
+    JsonRpcView.json_rpc_error(-32603, "Internal Error", nil)
+  end
+
+  def render("400.json", _assigns) do
+    JsonRpcView.json_rpc_error(-32700, "Parse Error", nil)
   end
 end

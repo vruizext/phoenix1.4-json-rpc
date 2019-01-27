@@ -9,7 +9,7 @@ defmodule JsonRpcApi.Application do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      JsonRpcApi.Repo,
+      # JsonRpcApi.Repo,
       # Start the endpoint when the application starts
       JsonRpcApiWeb.Endpoint
       # Starts a worker by calling: JsonRpcApi.Worker.start_link(arg)

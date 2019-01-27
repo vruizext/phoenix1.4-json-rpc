@@ -1,19 +1,25 @@
 # JsonRpcApi
 
-To start your Phoenix server:
+This is an simple example of how to setup a [JSON RPC](https://www.jsonrpc.org/specification) API with Phoenix 1.4.
+
+After checking out the project, you can start your Phoenix server as usual:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+To test the API you have to send a `POST` request to the `/api` endpoint, and include in the payload a valid JSON RPC request.
 
-## Learn more
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+```
+POST /api HTTP/1.1
+[{"jsonrpc": "2.0", "method": "hello", "params": {"name": "FooBar"}, "id": 1},
+{"jsonrpc": "2.0", "method": "bye", "params": {"name": "John Doe"}, "id": 23}]
+```
+
+Yields:
+
+```
+[{"id": 1,"jsonrpc": "2.0", "result": {"hello": "FooBar"}},
+{"id": 23,"jsonrpc": "2.0", "result": {"bye": "John Doe"}}]
+```

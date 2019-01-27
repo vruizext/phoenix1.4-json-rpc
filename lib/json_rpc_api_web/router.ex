@@ -7,5 +7,6 @@ defmodule JsonRpcApiWeb.Router do
 
   scope "/api", JsonRpcApiWeb do
     pipe_through :api
+    post "/", JsonRpcController, :handle
   end
 end
