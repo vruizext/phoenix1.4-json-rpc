@@ -5,7 +5,10 @@ defmodule JsonRpcApiWeb.JsonRpcController do
   alias JsonRpcApi.JsonRpcMethods
 
   def handle(conn, rpc_request) do
-    response = parse(rpc_request) |> dispatch
+    response =
+      rpc_request
+      |> parse()
+      |> dispatch()
     render(conn, "rpc_response.json", response: response)
   end
 
