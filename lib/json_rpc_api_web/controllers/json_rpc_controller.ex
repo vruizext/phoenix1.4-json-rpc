@@ -17,7 +17,7 @@ defmodule JsonRpcApiWeb.JsonRpcController do
   end
 
   defp dispatch({:ok, {method, params, id}}) do
-    with_result(apply(JsonRpcMethods, String.to_atom(method), [params]), id)
+    with_result(apply(JsonRpcMethods, String.to_existing_atom(method), [params]), id)
   rescue
     e in FunctionClauseError ->
       IO.inspect(e)
