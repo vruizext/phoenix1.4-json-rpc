@@ -12,7 +12,7 @@ defmodule JsonRpcApiWeb.JsonRpcController do
     render(conn, "rpc_response.json", response: response)
   end
 
-  defp dispatch(requests) when is_list(requests) and length(requests) > 0 do
+  defp dispatch(requests) when is_list(requests) do
     Enum.map(requests, &dispatch(&1))
   end
 
